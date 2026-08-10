@@ -1,0 +1,53 @@
+name: Run ENTSO-E notebooks
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # Every day at 06:00 UTC
+    - cron: "0 6 * * *"
+
+jobs:
+  run-notebooks:
+    runs-on: ubuntu-latest
+
+    env:
+      ENTSOE_API_TOKEN: ${{ secrets.ENTSOE_API_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run day-ahead prices notebook
+        run: |
+          jupyter nbconvert \
+            --to notebook \
+            --execute notebooks/entsoe_day_ahead_prices_eda.ipynb \
+            --output entsoe_day_ahead_prices_eda_executed.ipynb \
+            --output-dir notebooks/
+
+      - name: Run generation and imports notebook
+        run: |
+          jupyter nbconvert \
+            --to notebook \
+            --execute notebooks/entsoe_generation_import_eda.ipynb \
+            --output entsoe_generation_import_eda_executed.ipynb \
+            --output-dir notebooks/
+
+      - name: Run load notebook
+        run: |
+          jupyter nbconvert \
+            --to notebook \
+            --execute notebooks/entsoe_load_eda.ipynb \
+            --output entsoe_load_eda_executed.ipynb \
+            --output-dir notebooks/
