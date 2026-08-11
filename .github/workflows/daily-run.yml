@@ -17,7 +17,7 @@ jobs:
     env:
       ENTSOE_API_TOKEN: ${{ secrets.ENTSOE_API_TOKEN }}
 
-    steps:
+    steps:    
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -30,31 +30,24 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Run day-ahead prices notebook
+          
+      - name: Create executed notebooks directory
         run: |
-          jupyter nbconvert \
-            --to notebook \
-            --execute notebooks/entsoe_day_ahead_prices_eda.ipynb \
-            --output entsoe_day_ahead_prices_eda_executed.ipynb \
-            --output-dir notebooks/
+          mkdir -p daily_updated_notebooks
 
-      - name: Run generation and imports notebook
+      - name: Run all notebooks
         run: |
-          jupyter nbconvert \
-            --to notebook \
-            --execute notebooks/entsoe_generation_import_eda.ipynb \
-            --output entsoe_generation_import_eda_executed.ipynb \
-            --output-dir notebooks/
-
-      - name: Run load notebook
-        run: |
-          jupyter nbconvert \
-            --to notebook \
-            --execute notebooks/entsoe_load_eda.ipynb \
-            --output entsoe_load_eda_executed.ipynb \
-            --output-dir notebooks/
-
+          for notebook in notebooks/*.ipynb; do
+            filename=$(basename "$notebook")
+            echo "Running $filename"
+      
+            jupyter nbconvert \
+              --to notebook \
+              --execute "$notebook" \
+              --output "$filename" \
+              --output-dir daily_updated_notebooks/
+          done
+                
       - name: Commit updated notebooks
         run: |
           git config user.name "github-actions[bot]"
