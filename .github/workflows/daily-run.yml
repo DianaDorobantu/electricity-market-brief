@@ -48,16 +48,17 @@ jobs:
               --output-dir daily_updated_notebooks/
           done
                 
+
       - name: Commit updated notebooks
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add notebooks/*_executed.ipynb
+          git add daily_updated_notebooks/
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update executed notebooks"
+            git commit -m "Update daily notebooks"
             git push
           fi
