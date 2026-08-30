@@ -7,5 +7,3 @@ __pycache__/
 .DS_Store
 /.quarto/
 **/*.quarto_ipynb
-*libs*
-entsoe_data_categories/*_files/*
