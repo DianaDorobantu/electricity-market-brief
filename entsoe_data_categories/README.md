@@ -10,7 +10,7 @@ The available API methods are grouped into six functional categories:
 2. Load
 3. Generation
 4. Transmission
-5. Congestion Management
-6. Balancing
+5. Balancing
+6. Outages
 
 ---
