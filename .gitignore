@@ -6,4 +6,4 @@ __pycache__/
 !.env.template
 .DS_Store
 /.quarto/
-**/*.quarto_ipynb
+**/*.quarto_ipynb*
