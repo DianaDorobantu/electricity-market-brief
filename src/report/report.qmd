@@ -1,0 +1,697 @@
+---
+title: "European Electricity Market Report"
+author: "Diana M. Dorobantu"
+date: today
+
+format:
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    toc: true
+    html-math-method: katex
+    css: styles.css
+
+jupyter: python3
+execute:
+  echo: false
+---
+
+```{python}
+import numpy as np
+import pandas as pd
+
+import matplotlib.pyplot as plt
+import plotly.express as px
+
+import os
+from dotenv import load_dotenv
+
+from entsoe import EntsoePandasClient
+```
+
+
+
+
+
+```{python}
+load_dotenv()
+
+def entsoe_client():
+    '''
+    Create and return ENTSO-E API client.
+    '''
+    entsoe_token = os.getenv("ENTSOE_API_TOKEN")
+
+    if entsoe_token is None:
+        raise RuntimeError(
+            "ENTSOE_API_TOKEN is required"
+        )
+
+    return EntsoePandasClient(api_key=entsoe_token)
+
+client = entsoe_client()
+```
+
+
+
+
+```{python}
+countries = {
+    "Denmark": {
+        "code": "DK",
+        "timezone": "Europe/Copenhagen",
+    },
+
+    "Norway": {
+        "code": "NO",
+        "timezone": "Europe/Oslo",
+    },
+
+    "Sweden": {
+        "code": "SE",
+        "timezone": "Europe/Stockholm",
+    },
+
+    "Finland": {
+        "code": "FI",
+        "timezone": "Europe/Helsinki",
+    },
+
+    "Iceland": {
+        "code": "IS",
+        "timezone": "Atlantic/Reykjavik",
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+    "Germany": {
+        "code": "DE",
+        "timezone": "Europe/Berlin",
+    },
+
+    "France": {
+        "code": "FR",
+        "timezone": "Europe/Paris",
+    },
+
+    "Netherlands": {
+        "code": "NL",
+        "timezone": "Europe/Amsterdam",
+    },
+
+    "Belgium": {
+        "code": "BE",
+        "timezone": "Europe/Brussels",
+    },
+
+    "Luxembourg": {
+        "code": "LU",
+        "timezone": "Europe/Luxembourg",
+    },
+
+    "Switzerland": {
+        "code": "CH",
+        "timezone": "Europe/Zurich",
+    },
+
+    "Austria": {
+        "code": "AT",
+        "timezone": "Europe/Vienna",
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+    "Spain": {
+        "code": "ES",
+        "timezone": "Europe/Madrid",
+    },
+
+   "Portugal": {
+        "code": "PT",
+        "timezone": "Europe/Lisbon",
+    },
+
+    "Italy": {
+        "code": "IT",
+        "timezone": "Europe/Rome",
+    },
+
+    "Greece": {
+        "code": "GR",
+        "timezone": "Europe/Athens",
+    },
+
+    "Cyprus": {
+        "code": "CY",
+        "timezone": "Asia/Nicosia",
+    },
+
+    "Georgia": {
+        "code": "GE",
+        "timezone": "Asia/Tbilisi",
+    },
+
+
+
+
+
+
+
+    "Croatia": {
+        "code": "HR",
+        "timezone": "Europe/Zagreb",
+    },
+
+    "Bosnia Herzegovina": {
+        "code": "BA",
+        "timezone": "Europe/Sarajevo",
+    },
+
+    "Serbia": {
+        "code": "RS",
+        "timezone": "Europe/Belgrade",
+    },
+
+    "Montenegro": {
+        "code": "ME",
+        "timezone": "Europe/Podgorica",
+    },
+
+    "Kosovo": {
+        "code": "XK",
+        "timezone": "Europe/Rome",
+    },
+
+    "Albania": {
+        "code": "AL",
+        "timezone": "Europe/Tirane",
+    },
+
+    "North Macedonia": {
+        "code": "MK",
+        "timezone": "Europe/Skopje",
+    },
+
+
+
+
+
+
+
+    "Slovakia": {
+        "code": "SK",
+        "timezone": "Europe/Bratislava",
+    },
+
+    "Slovenia": {
+        "code": "SI",
+        "timezone": "Europe/Ljubljana",
+    },
+
+    "Czech Republic": {
+        "code": "CZ",
+        "timezone": "Europe/Prague",
+    },
+
+        "Poland": {
+        "code": "PL",
+        "timezone": "Europe/Warsaw",
+    },
+
+        "Hungary": {
+        "code": "HU",
+        "timezone": "Europe/Budapest",
+    },
+
+    "Romania": {
+        "code": "RO",
+        "timezone": "Europe/Bucharest",
+    },
+
+    "Moldova": {
+        "code": "MD",
+        "timezone": "Europe/Chisinau",
+    },
+
+
+
+
+
+    "Estonia": {
+        "code": "EE",
+        "timezone": "Europe/Tallinn",
+    },
+
+    "Latvia": {
+        "code": "LV",
+        "timezone": "Europe/Riga",
+    },
+
+    "Lithuania": {
+        "code": "LT",
+        "timezone": "Europe/Vilnius",
+    },
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+def get_periods(timezone):
+
+    now = pd.Timestamp.now(tz=timezone)
+    today = now.normalize()
+
+    return {
+        "now": now,
+        "today": today,
+        "yesterday": today - pd.Timedelta(days=1),
+        "last_week": today - pd.Timedelta(days=7),
+        "last_month": today - pd.DateOffset(months=1),
+        "tomorrow": today + pd.Timedelta(days=1),
+        "day_after_tomorrow": today + pd.Timedelta(days=2),
+        "next_week": today + pd.Timedelta(days=7),
+        "next_month": today + pd.DateOffset(months=1),
+    }
+```
+
+
+
+::: {.panel-tabset}
+
+# Load
+```{python}
+
+# | out-width: 100%
+
+def show_load(country):
+
+    config = countries[country]
+
+    country_code = config["code"]
+
+    timezone = config["timezone"]
+    periods = get_periods(timezone)
+
+    load = client.query_load(
+        country_code=config["code"],
+        start=periods["last_week"],
+        end=periods["now"],
+    )
+    fig = px.line(
+        load,
+        title=f"{country} — Actual Load",
+        labels={
+            "index": "Time",
+            "value": "Load (MW)",
+            "variable": ""
+        }
+    )
+
+    fig.update_layout(
+        xaxis_title="Time",
+        yaxis_title="Load (MW)",
+        legend=dict(
+            orientation="h"
+        ),
+    )
+
+    fig.show()
+```
+
+
+
+
+::: {.panel-tabset}
+# Nordics
+
+::: {.panel-tabset}
+## Denmark
+
+``` {python}
+show_load("Denmark")
+```
+
+## Norway
+
+``` {python}
+show_load("Norway")
+```
+
+## Sweden
+
+``` {python}
+show_load("Sweden")
+```
+
+## Finland
+
+``` {python}
+show_load("Finland")
+```
+
+## Iceland
+
+``` {python}
+print("No data provided.")
+```
+::: 
+
+
+
+
+
+
+
+
+# West
+
+::: {.panel-tabset}
+## Germany
+
+``` {python}
+show_load("Germany")
+```
+
+## France
+
+``` {python}
+show_load("France")
+```
+
+
+## Netherlands
+
+``` {python}
+show_load("Netherlands")
+```
+
+## Belgium
+
+``` {python}
+show_load("Belgium")
+```
+
+## Switzerland
+
+``` {python}
+show_load("Switzerland")
+```
+
+## Austria
+
+``` {python}
+show_load("Austria")
+```
+
+## Luxembourg
+
+``` {python}
+show_load("Luxembourg")
+```
+
+:::
+
+
+
+
+
+
+
+# South
+
+::: {.panel-tabset}
+## Spain
+
+``` {python}
+show_load("Spain")
+```
+
+## Portugal
+
+``` {python}
+show_load("Portugal")
+```
+
+## Italy
+
+``` {python}
+show_load("Italy")
+```
+
+## Greece
+
+``` {python}
+show_load("Greece")
+```
+
+## Cyprus
+
+``` {python}
+show_load("Cyprus")
+```
+
+## Georgia
+
+``` {python}
+show_load("Georgia")
+```
+:::
+
+
+
+
+
+
+
+
+
+# Balkans
+
+::: {.panel-tabset}
+
+## Croatia
+
+``` {python}
+show_load("Croatia")
+```
+
+## Bosnia Herzegovina
+
+``` {python}
+show_load("Bosnia Herzegovina")
+```
+
+## Serbia
+
+``` {python}
+show_load("Serbia")
+```
+
+## Montenegro
+
+``` {python}
+show_load("Montenegro")
+```
+
+## Kosovo
+
+``` {python}
+show_load("Kosovo")
+```
+
+## Albania
+
+``` {python}
+show_load("Albania")
+```
+
+## North Macedonia
+
+``` {python}
+show_load("North Macedonia")
+```
+
+:::
+
+
+
+
+
+
+
+# East
+
+::: {.panel-tabset}
+
+## Slovakia
+
+``` {python}
+show_load("Slovakia")
+```
+
+## Slovenia
+
+``` {python}
+show_load("Slovenia")
+```
+
+## Czech Republic
+
+``` {python}
+show_load("Czech Republic")
+```
+
+## Poland
+
+``` {python}
+show_load("Poland")
+```
+
+## Hungary
+
+``` {python}
+show_load("Hungary")
+```
+
+## Romania
+
+``` {python}
+show_load("Romania")
+```
+
+## Moldova
+
+``` {python}
+show_load("Moldova")
+```
+:::
+
+
+
+
+
+
+# Baltics
+
+::: {.panel-tabset}
+
+## Estonia
+
+``` {python}
+show_load("Estonia")
+```
+
+## Latvia
+
+``` {python}
+show_load("Latvia")
+```
+
+## Lithuania
+
+``` {python}
+show_load("Lithuania")
+```
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:::
+# Generation
+# Balancing
+# Transmission
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
