@@ -7,5 +7,4 @@ __pycache__/
 .DS_Store
 /.quarto/
 **/*.quarto_ipynb*
-
-**/*.quarto_ipynb
+/_site/
