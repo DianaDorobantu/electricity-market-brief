@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Balancing</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-45431c2918bd31147ddb3fa7038bb99f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Balancing</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<p>Balancing data describes the electricity system’s real-time balancing and reserve mechanisms used to keep the grid in balance.</p>
+<section id="typical-units" class="level3">
+<h3 class="anchored" data-anchor-id="typical-units">Typical units</h3>
+<ul>
+<li>Reserve Capacity Prices: <code>EUR/MW</code></li>
+<li>Reserve Capacity <code>MW</code></li>
+<li>Imbalance Volume: <code>MWh</code></li>
+<li>Activated Balancing Energy: <code>MWh</code></li>
+<li>Balancing/Imbalance Prices: <code>EUR/MWh</code></li>
+</ul>
+</section>
+<section id="typical-applications" class="level3">
+<h3 class="anchored" data-anchor-id="typical-applications">Typical applications</h3>
+<ul>
+<li>Balancing-market analysis</li>
+<li>Reserve and Balancing-price forecasting</li>
+<li>Imbalance-cost analysis</li>
+<li>Renewable integration</li>
+<li>Battery/Storage optimisation</li>
+<li>Ancillary-service analysis</li>
+<li>Power-system flexibility assessment</li>
+</ul>
+<hr>
+</section>
+<section id="config" class="level1">
+<h1>Config</h1>
+<hr>
+<div id="ee2f6345" class="cell" data-execution_count="84">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">"ggplot"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> entsoe <span class="im">import</span> EntsoePandasClient</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ENTSOE Token</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>entsoe_token <span class="op">=</span> os.getenv(<span class="st">"ENTSOE_API_TOKEN"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ENTSOE Client</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>entsoe_client <span class="op">=</span> EntsoePandasClient(api_key<span class="op">=</span>entsoe_token)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="settings" class="level1">
+<h1>Settings</h1>
+<hr>
+<div id="7886c493" class="cell" data-execution_count="85">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Location</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>country_capital <span class="op">=</span> <span class="st">"Madrid"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>country_code <span class="op">=</span> <span class="st">"ES"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Period</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>tz <span class="op">=</span> <span class="ss">f"Europe/</span><span class="sc">{</span>country_capital<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>now <span class="op">=</span> pd.Timestamp.now(tz<span class="op">=</span>tz)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> now.normalize()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>yesterday <span class="op">=</span> today <span class="op">-</span> pd.Timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>last_week <span class="op">=</span> today <span class="op">-</span> pd.Timedelta(days<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>last_month <span class="op">=</span> today <span class="op">-</span> pd.DateOffset(months<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>tomorrow <span class="op">=</span> today <span class="op">+</span> pd.Timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>day_after_tomorrow <span class="op">=</span> today <span class="op">+</span> pd.Timedelta(days<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>next_week <span class="op">=</span> today <span class="op">+</span> pd.Timedelta(days<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>next_month <span class="op">=</span> today <span class="op">+</span> pd.DateOffset(months<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="eda" class="level2">
+<h2 class="anchored" data-anchor-id="eda"># EDA</h2>
+<section id="section" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+</section>
+<section id="query_imbalance_volumes" class="level1">
+<h1>.query_imbalance_volumes</h1>
+<p>(country_code, start=start, end=end, psr_type=None) -&gt; pd.DataFrame</p>
+<p>
+Total aggregated volume of the energy deviation from the scheduled position.
+</p>
+<div id="2ba26e7a" class="cell" data-execution_count="37">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>imbalance_volumes<span class="op">=</span> entsoe_client.query_imbalance_volumes(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    country_code<span class="op">=</span>country_code,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>now, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    psr_type<span class="op">=</span><span class="va">None</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="82b77715" class="cell" data-execution_count="38">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>imbalance_volumes.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.Series'&gt;
+DatetimeIndex: 757 entries, 2026-08-27 00:00:00+02:00 to 2026-09-03 21:00:00+02:00
+Series name: Imbalance Volume
+Non-Null Count  Dtype  
+--------------  -----  
+757 non-null    float64
+dtypes: float64(1)
+memory usage: 11.8 KB</code></pre>
+</div>
+</div>
+<div id="8b6152db" class="cell" data-execution_count="39">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>imbalance_volumes.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>2026-08-27 00:00:00+02:00    46.0
+2026-08-27 00:15:00+02:00   -56.9
+2026-08-27 00:30:00+02:00   -58.7
+2026-08-27 00:45:00+02:00   -58.6
+2026-08-27 01:00:00+02:00   -39.9
+Name: Imbalance Volume, dtype: float64</code></pre>
+</div>
+</div>
+<div id="fca6bad6" class="cell" data-execution_count="86">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>imbalance_volumes.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Imbalance Volumes"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Volume (MWh)"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="balancing_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="section-1" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_imbalance_prices" class="level1">
+<h1>.query_imbalance_prices</h1>
+<p>(country_code, start=start, end=end, psr_type=None) -&gt; pd.DataFrame</p>
+<p>
+Prices used to financially settle a participant’s deviation from its scheduled position
+</p>
+<div id="d921b9ef" class="cell" data-execution_count="41">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>imbalance_prices <span class="op">=</span> entsoe_client.query_imbalance_prices(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    country_code<span class="op">=</span>country_code,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>now,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    psr_type<span class="op">=</span><span class="va">None</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="f26432f6" class="cell" data-execution_count="42">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>imbalance_prices.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+DatetimeIndex: 757 entries, 2026-08-27 00:00:00+02:00 to 2026-09-03 21:00:00+02:00
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Long    757 non-null    float64
+ 1   Short   757 non-null    float64
+dtypes: float64(2)
+memory usage: 17.7 KB</code></pre>
+</div>
+</div>
+<div id="b3f3012a" class="cell" data-execution_count="43">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>imbalance_prices.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Long</th>
+<th data-quarto-table-cell-role="th">Short</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 00:00:00+02:00</th>
+<td>129.95</td>
+<td>234.82</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-08-27 00:15:00+02:00</th>
+<td>109.23</td>
+<td>207.38</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 00:30:00+02:00</th>
+<td>123.61</td>
+<td>207.16</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-08-27 00:45:00+02:00</th>
+<td>124.18</td>
+<td>206.83</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 01:00:00+02:00</th>
+<td>268.45</td>
+<td>268.45</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="6d073936" class="cell" data-execution_count="89">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>imbalance_prices.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Imbalance Settlement Prices"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Price (€/MWh)"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="balancing_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>
+The long and short columns represent the two imbalance directions from the system’s perspective.
+</p>
+<p><code>LONG</code> - price associated with a <b>surplus</b> (more energy was supplied than scheduled)</p>
+<p><code>SHORT</code> - price associated with a <b>deficit</b> (less energy was supplied than scheduled)</p>
+<section id="section-2" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_procured_balancing_capacity" class="level1">
+<h1>.query_procured_balancing_capacity</h1>
+<p>(country_code, process_type, start=start, end=end, type_marketagreement_type=None) -&gt; pd.DataFrame</p>
+<div id="90d84333" class="cell" data-execution_count="46">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">''' 'A46': 'Replacement reserve',</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">    'A47': 'Manual frequency restoration reserve',</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">    'A51': 'Automatic frequency restoration reserve',</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">    'A52': 'Frequency containment reserve',</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">    'A56': 'Frequency restoration reserve'</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>aFRR <span class="op">=</span> entsoe_client.query_procured_balancing_capacity(</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    country_code<span class="op">=</span>country_code,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    process_type<span class="op">=</span><span class="st">"A51"</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>today,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    type_marketagreement_type<span class="op">=</span><span class="va">None</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="c2283a41" class="cell" data-execution_count="47">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>aFRR.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+DatetimeIndex: 94 entries, 2026-08-27 00:00:00+02:00 to 2026-08-27 23:15:00+02:00
+Columns: 400 entries, ('Down', np.int64(1), 'Price') to ('Up', np.int64(100), 'Volume')
+dtypes: float64(400)
+memory usage: 294.5 KB</code></pre>
+</div>
+</div>
+<div id="783af243" class="cell" data-execution_count="49">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>aFRR.head().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">2026-08-27 00:00:00+02:00</th>
+<th data-quarto-table-cell-role="th">2026-08-27 00:15:00+02:00</th>
+<th data-quarto-table-cell-role="th">2026-08-27 00:30:00+02:00</th>
+<th data-quarto-table-cell-role="th">2026-08-27 00:45:00+02:00</th>
+<th data-quarto-table-cell-role="th">2026-08-27 01:00:00+02:00</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">direction</th>
+<th data-quarto-table-cell-role="th">mrid</th>
+<th data-quarto-table-cell-role="th">unit</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th rowspan="5" data-quarto-table-cell-role="th" data-valign="top">Down</th>
+<th rowspan="2" data-quarto-table-cell-role="th" data-valign="top">1</th>
+<th data-quarto-table-cell-role="th">Price</th>
+<td>NaN</td>
+<td>0.25</td>
+<td>NaN</td>
+<td>0.83</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Volume</th>
+<td>NaN</td>
+<td>27.00</td>
+<td>NaN</td>
+<td>5.00</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-quarto-table-cell-role="th" data-valign="top">2</th>
+<th data-quarto-table-cell-role="th">Price</th>
+<td>NaN</td>
+<td>0.86</td>
+<td>NaN</td>
+<td>1.25</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Volume</th>
+<td>NaN</td>
+<td>2.00</td>
+<td>NaN</td>
+<td>14.00</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3</th>
+<th data-quarto-table-cell-role="th">Price</th>
+<td>NaN</td>
+<td>0.91</td>
+<td>NaN</td>
+<td>0.98</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th rowspan="5" data-quarto-table-cell-role="th" data-valign="top">Up</th>
+<th data-quarto-table-cell-role="th">98</th>
+<th data-quarto-table-cell-role="th">Volume</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th rowspan="2" data-quarto-table-cell-role="th" data-valign="top">99</th>
+<th data-quarto-table-cell-role="th">Price</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Volume</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th rowspan="2" data-quarto-table-cell-role="th" data-valign="top">100</th>
+<th data-quarto-table-cell-role="th">Price</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Volume</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>400 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<section id="section-3" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_activated_balancing_energy" class="level1">
+<h1>.query_activated_balancing_energy</h1>
+<p>(country_code, start=start, end=end, business_type, psr_type=None) -&gt; pd.DataFrame</p>
+<div id="50903cd8" class="cell" data-execution_count="56">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># activated_balancing_energy = entsoe_client.query_activated_balancing_energy(</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     country_code=country_code,</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     start=last_week,</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     end=next_week,</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     business_type="B04",</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     psr_type=None</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inspect</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inspect.signature(entsoe_client.query_activated_balancing_energy))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(country_code: entsoe.mappings.Area | str, start: pandas.Timestamp, end: pandas.Timestamp, business_type: str, psr_type: str | None = None) -&gt; pandas.DataFrame</code></pre>
+</div>
+</div>
+<section id="section-4" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_activated_balancing_energy_prices" class="level1">
+<h1>.query_activated_balancing_energy_prices</h1>
+<p>((country_code, start=start, end=end, process_type=‘A16’, psr_type=None, business_type=None, standard_market_product=None, original_market_product=None))-&gt; pd.DataFrame</p>
+<p>
+Prices paid by the TSO per type of procured balancing reserve and per procurement period.
+</p>
+<div id="3339a698" class="cell" data-execution_count="55">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># activated_balancing_energy_prices = entsoe_client.query_activated_balancing_energy_prices(</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     country_code=country_code,</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     start=last_week,</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     end=yesterday,</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     process_type="A16",</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     psr_type=None,</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     business_type=None,</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     standard_market_product=None,</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     original_market_product=None</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="section-5" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_contracted_reserve_amount" class="level1">
+<h1>.query_contracted_reserve_amount</h1>
+<p>(country_code, type_marketagreement_type, start=start, end=end, psr_type=None) -&gt; pd.DataFrame</p>
+<div id="71485497" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inspect</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inspect.signature(entsoe_client.query_contracted_reserve_amount))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># for process_type in ["A52", "A51", "A47", "A46"]:</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     try:</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#         df = entsoe_client.query_contracted_reserve_amount(</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#             country_code=country_code,</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#             process_type=process_type,</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#             type_marketagreement_type="A01",</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#             start=last_week,</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#             end=today,</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#             psr_type=None,</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#         print(process_type, df.shape)</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     except Exception as e:</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">#         print(process_type, repr(e))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(country_code: entsoe.mappings.Area | str, process_type: str, type_marketagreement_type: str, start: pandas.Timestamp, end: pandas.Timestamp, psr_type: str | None = None, offset: int = 0) -&gt; pandas.DataFrame</code></pre>
+</div>
+</div>
+<div id="225aaf01" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>process_types <span class="op">=</span> {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A46"</span>: <span class="st">"Replacement reserve"</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A47"</span>: <span class="st">"Manual frequency restoration reserve"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A51"</span>: <span class="st">"Automatic frequency restoration reserve"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A52"</span>: <span class="st">"Frequency containment reserve"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A56"</span>: <span class="st">"Frequency restoration reserve"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>market_agreement_types <span class="op">=</span> {</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A01"</span>: <span class="st">"Daily"</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A02"</span>: <span class="st">"Weekly"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A03"</span>: <span class="st">"Monthly"</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A04"</span>: <span class="st">"Yearly"</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A05"</span>: <span class="st">"Total"</span>,</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A06"</span>: <span class="st">"Long term"</span>,</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A07"</span>: <span class="st">"Intraday"</span>,</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A13"</span>: <span class="st">"Hourly"</span>,</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> process_code, process_name <span class="kw">in</span> process_types.items():</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> market_code, market_name <span class="kw">in</span> market_agreement_types.items():</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>            df <span class="op">=</span> entsoe_client.query_contracted_reserve_amount(</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>                country_code<span class="op">=</span>country_code,</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>                process_type<span class="op">=</span>process_code,</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>                type_marketagreement_type<span class="op">=</span>market_code,</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>                start<span class="op">=</span>last_week,</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>                end<span class="op">=</span>today,</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>                psr_type<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>            results[(process_code, market_code)] <span class="op">=</span> df</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"</span><span class="sc">{</span>process_code<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>process_name<span class="sc">}</span><span class="ss">) | "</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"</span><span class="sc">{</span>market_code<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>market_name<span class="sc">}</span><span class="ss">) -&gt; "</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"</span><span class="sc">{</span>df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(</span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"</span><span class="sc">{</span>process_code<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>process_name<span class="sc">}</span><span class="ss">) | "</span></span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"</span><span class="sc">{</span>market_code<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>market_name<span class="sc">}</span><span class="ss">) -&gt; "</span></span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"</span><span class="sc">{</span><span class="bu">type</span>(e)<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A46 (Replacement reserve) | A01 (Daily) -&gt; NoMatchingDataError: 
+A46 (Replacement reserve) | A02 (Weekly) -&gt; NoMatchingDataError: 
+A46 (Replacement reserve) | A03 (Monthly) -&gt; NoMatchingDataError: 
+A46 (Replacement reserve) | A04 (Yearly) -&gt; NoMatchingDataError: 
+A46 (Replacement reserve) | A05 (Total) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A46&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A05&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A46 (Replacement reserve) | A06 (Long term) -&gt; NoMatchingDataError: 
+A46 (Replacement reserve) | A07 (Intraday) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A46&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A07&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A46 (Replacement reserve) | A13 (Hourly) -&gt; NoMatchingDataError: 
+A47 (Manual frequency restoration reserve) | A01 (Daily) -&gt; NoMatchingDataError: 
+A47 (Manual frequency restoration reserve) | A02 (Weekly) -&gt; NoMatchingDataError: 
+A47 (Manual frequency restoration reserve) | A03 (Monthly) -&gt; (673, 1)
+A47 (Manual frequency restoration reserve) | A04 (Yearly) -&gt; NoMatchingDataError: 
+A47 (Manual frequency restoration reserve) | A05 (Total) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A47&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A05&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A47 (Manual frequency restoration reserve) | A06 (Long term) -&gt; NoMatchingDataError: 
+A47 (Manual frequency restoration reserve) | A07 (Intraday) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A47&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A07&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A47 (Manual frequency restoration reserve) | A13 (Hourly) -&gt; NoMatchingDataError: 
+A51 (Automatic frequency restoration reserve) | A01 (Daily) -&gt; (673, 2)
+A51 (Automatic frequency restoration reserve) | A02 (Weekly) -&gt; NoMatchingDataError: 
+A51 (Automatic frequency restoration reserve) | A03 (Monthly) -&gt; NoMatchingDataError: 
+A51 (Automatic frequency restoration reserve) | A04 (Yearly) -&gt; NoMatchingDataError: 
+A51 (Automatic frequency restoration reserve) | A05 (Total) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A51&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A05&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A51 (Automatic frequency restoration reserve) | A06 (Long term) -&gt; NoMatchingDataError: 
+A51 (Automatic frequency restoration reserve) | A07 (Intraday) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A51&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A07&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A51 (Automatic frequency restoration reserve) | A13 (Hourly) -&gt; NoMatchingDataError: 
+A52 (Frequency containment reserve) | A01 (Daily) -&gt; NoMatchingDataError: 
+A52 (Frequency containment reserve) | A02 (Weekly) -&gt; NoMatchingDataError: 
+A52 (Frequency containment reserve) | A03 (Monthly) -&gt; NoMatchingDataError: 
+A52 (Frequency containment reserve) | A04 (Yearly) -&gt; NoMatchingDataError: 
+A52 (Frequency containment reserve) | A05 (Total) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A52&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A05&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A52 (Frequency containment reserve) | A06 (Long term) -&gt; NoMatchingDataError: 
+A52 (Frequency containment reserve) | A07 (Intraday) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A52&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A07&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A52 (Frequency containment reserve) | A13 (Hourly) -&gt; NoMatchingDataError: 
+A56 (Frequency restoration reserve) | A01 (Daily) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A56&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A01&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A56 (Frequency restoration reserve) | A02 (Weekly) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A56&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A02&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A56 (Frequency restoration reserve) | A03 (Monthly) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A56&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A03&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A56 (Frequency restoration reserve) | A04 (Yearly) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A56&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A04&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A56 (Frequency restoration reserve) | A05 (Total) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A56&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A05&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A56 (Frequency restoration reserve) | A06 (Long term) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A56&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A06&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A56 (Frequency restoration reserve) | A07 (Intraday) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A56&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A07&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200
+A56 (Frequency restoration reserve) | A13 (Hourly) -&gt; HTTPError: 400 Client Error:  for url: https://web-api.tp.entsoe.eu/api?documentType=A81&amp;businessType=B95&amp;processType=A56&amp;controlArea_Domain=10YES-REE------0&amp;type_MarketAgreement.Type=A13&amp;offset=0&amp;securityToken=9bad7365-6181-4bcc-a4d2-d3edb5f6c9df&amp;periodStart=202608262200&amp;periodEnd=202609022200</code></pre>
+</div>
+</div>
+<div id="6e8509dd" class="cell" data-execution_count="57">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>aFRR_daily<span class="op">=</span>entsoe_client.query_contracted_reserve_amount(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    country_code<span class="op">=</span>country_code,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    process_type<span class="op">=</span><span class="st">"A51"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    type_marketagreement_type<span class="op">=</span><span class="st">"A01"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>today,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    psr_type<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="76bed862" class="cell" data-execution_count="58">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>aFRR_daily.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+DatetimeIndex: 673 entries, 2026-08-27 00:00:00+02:00 to 2026-09-03 00:00:00+02:00
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Down    673 non-null    float64
+ 1   Up      673 non-null    float64
+dtypes: float64(2)
+memory usage: 15.8 KB</code></pre>
+</div>
+</div>
+<div id="a4c56df7" class="cell" data-execution_count="59">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>aFRR_daily.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Down</th>
+<th data-quarto-table-cell-role="th">Up</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 00:00:00+02:00</th>
+<td>1100.0</td>
+<td>1100.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-08-27 00:15:00+02:00</th>
+<td>1100.0</td>
+<td>1100.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 00:30:00+02:00</th>
+<td>1100.0</td>
+<td>1100.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-08-27 00:45:00+02:00</th>
+<td>1100.0</td>
+<td>1100.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 01:00:00+02:00</th>
+<td>1000.0</td>
+<td>1000.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="5532fe8e" class="cell" data-execution_count="90">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>aFRR_daily.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Automatic frequency restoration reserve"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Volume (MW)"</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="balancing_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="02d6fde9" class="cell" data-execution_count="66">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mFRR_monthly<span class="op">=</span>entsoe_client.query_contracted_reserve_amount(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    country_code<span class="op">=</span>country_code,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    process_type<span class="op">=</span><span class="st">"A47"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    type_marketagreement_type<span class="op">=</span><span class="st">"A03"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>today,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    psr_type<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="b684ab69" class="cell" data-execution_count="67">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mFRR_monthly.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+DatetimeIndex: 673 entries, 2026-08-27 00:00:00+02:00 to 2026-09-03 00:00:00+02:00
+Freq: 15min
+Data columns (total 1 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Down    673 non-null    float64
+dtypes: float64(1)
+memory usage: 10.5 KB</code></pre>
+</div>
+</div>
+<div id="06ddaaba" class="cell" data-execution_count="68">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>mFRR_monthly.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Down</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 00:00:00+02:00</th>
+<td>1775.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-08-27 00:15:00+02:00</th>
+<td>1775.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 00:30:00+02:00</th>
+<td>1775.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-08-27 00:45:00+02:00</th>
+<td>1775.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 01:00:00+02:00</th>
+<td>1775.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="9ef6ecaf" class="cell" data-execution_count="69">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>mFRR_monthly.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Manual frequency restoration reserve"</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Volume"</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="balancing_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="section-6" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_contracted_reserve_prices" class="level1">
+<h1>.query_contracted_reserve_prices</h1>
+<p>(country_code, type_marketagreement_type, start=start, end=end, psr_type=None) -&gt; pd.DataFrame</p>
+<div id="a85a6a0e" class="cell" data-execution_count="62">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>aFRR_daily_prices<span class="op">=</span>entsoe_client.query_contracted_reserve_prices(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    country_code<span class="op">=</span>country_code,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    process_type<span class="op">=</span><span class="st">"A51"</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    type_marketagreement_type<span class="op">=</span><span class="st">"A01"</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>today,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    psr_type<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="c2643581" class="cell" data-execution_count="63">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>aFRR_daily_prices.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+DatetimeIndex: 673 entries, 2026-08-27 00:00:00+02:00 to 2026-09-03 00:00:00+02:00
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Down    673 non-null    float64
+ 1   Up      673 non-null    float64
+dtypes: float64(2)
+memory usage: 15.8 KB</code></pre>
+</div>
+</div>
+<div id="4fa65512" class="cell" data-execution_count="64">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>aFRR_daily_prices.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="64">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Down</th>
+<th data-quarto-table-cell-role="th">Up</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 00:00:00+02:00</th>
+<td>1.5</td>
+<td>7.33</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-08-27 00:15:00+02:00</th>
+<td>1.5</td>
+<td>7.60</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 00:30:00+02:00</th>
+<td>1.5</td>
+<td>7.23</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-08-27 00:45:00+02:00</th>
+<td>1.5</td>
+<td>6.30</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-08-27 01:00:00+02:00</th>
+<td>1.5</td>
+<td>6.05</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="4a85a161" class="cell" data-execution_count="91">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>aFRR_daily_prices.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Automatic frequency restoration reserve"</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Price (€/MW)"</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="balancing_files/figure-html/cell-30-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="section-7" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_unavailability_of_generation_units" class="level1">
+<h1>.query_unavailability_of_generation_units</h1>
+<p>(country_code, start=start, end=end, docstatus=None, periodstartupdate=None, periodendupdate=None) -&gt; pd.DataFrame</p>
+<div id="51351ceb" class="cell" data-execution_count="70">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>unavailability_of_generation_units <span class="op">=</span> entsoe_client.query_unavailability_of_generation_units(</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    country_code<span class="op">=</span>country_code, </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week, </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>today, </span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    docstatus<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    periodstartupdate<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    periodendupdate<span class="op">=</span><span class="va">None</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="fae1c5f7" class="cell" data-execution_count="71">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>unavailability_of_generation_units.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+DatetimeIndex: 92 entries, 2025-10-08 10:08:50+02:00 to 2026-09-03 09:05:20+02:00
+Data columns (total 18 columns):
+ #   Column                        Non-Null Count  Dtype                        
+---  ------                        --------------  -----                        
+ 0   avail_qty                     92 non-null     str                          
+ 1   biddingzone_domain            92 non-null     str                          
+ 2   businesstype                  92 non-null     str                          
+ 3   curvetype                     92 non-null     str                          
+ 4   docstatus                     0 non-null      object                       
+ 5   end                           92 non-null     datetime64[us, Europe/Madrid]
+ 6   mrid                          92 non-null     str                          
+ 7   nominal_power                 91 non-null     float64                      
+ 8   plant_type                    92 non-null     str                          
+ 9   production_resource_id        92 non-null     str                          
+ 10  production_resource_location  92 non-null     str                          
+ 11  production_resource_name      92 non-null     str                          
+ 12  production_resource_psr_name  92 non-null     str                          
+ 13  pstn                          92 non-null     str                          
+ 14  qty_uom                       92 non-null     str                          
+ 15  resolution                    92 non-null     str                          
+ 16  revision                      92 non-null     int64                        
+ 17  start                         92 non-null     datetime64[us, Europe/Madrid]
+dtypes: datetime64[us, Europe/Madrid](2), float64(1), int64(1), object(1), str(13)
+memory usage: 13.7+ KB</code></pre>
+</div>
+</div>
+<div id="dc8760e8" class="cell" data-execution_count="72">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>unavailability_of_generation_units.head().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">created_doc_time</th>
+<th data-quarto-table-cell-role="th">2025-10-08 10:08:50+02:00</th>
+<th data-quarto-table-cell-role="th">2025-10-08 10:08:50+02:00</th>
+<th data-quarto-table-cell-role="th">2025-10-08 10:08:51+02:00</th>
+<th data-quarto-table-cell-role="th">2025-10-08 10:08:51+02:00</th>
+<th data-quarto-table-cell-role="th">2025-11-10 16:06:39+01:00</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">avail_qty</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">biddingzone_domain</th>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">businesstype</th>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">curvetype</th>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">docstatus</th>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">end</th>
+<td>2026-08-28 00:00:00+02:00</td>
+<td>2026-08-28 00:00:00+02:00</td>
+<td>2026-08-28 00:00:00+02:00</td>
+<td>2026-08-28 00:00:00+02:00</td>
+<td>2026-10-31 00:00:00+01:00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">mrid</th>
+<td>CNY96Ljl3cmlHtrSk1eqow</td>
+<td>o-bWWIxY5w-x2I7_eyILoA</td>
+<td>7EzbPTHJBzwrgrkxExNjSw</td>
+<td>IhVBMcq73RrJLQeEP9zWUQ</td>
+<td>7bKnUFc-Dp_SK6HbWu_4Tg</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">nominal_power</th>
+<td>109.8</td>
+<td>100.0</td>
+<td>100.0</td>
+<td>109.8</td>
+<td>392.6</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">plant_type</th>
+<td>Hydro Pumped Storage</td>
+<td>Hydro Pumped Storage</td>
+<td>Hydro Pumped Storage</td>
+<td>Hydro Pumped Storage</td>
+<td>Fossil Gas</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">production_resource_id</th>
+<td>18WSLTG-12345-0T</td>
+<td>18WSLTB-12345-05</td>
+<td>18WSLTB-12345-05</td>
+<td>18WSLTG-12345-0T</td>
+<td>18WCAMGI10-12-07</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">production_resource_location</th>
+<td>Lleida</td>
+<td>Lleida</td>
+<td>Lleida</td>
+<td>Lleida</td>
+<td>Cádiz</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">production_resource_name</th>
+<td>SALLENT G</td>
+<td>SALLENT B</td>
+<td>SALLENT B</td>
+<td>SALLENT G</td>
+<td>CAMPGIB1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">production_resource_psr_name</th>
+<td>SALLENT 3G</td>
+<td>SALLENT 3B</td>
+<td>SALLENT 4B</td>
+<td>SALLENT 4G</td>
+<td>CAMPGIB1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">pstn</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">qty_uom</th>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">resolution</th>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">revision</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">start</th>
+<td>2026-08-27 00:00:00+02:00</td>
+<td>2026-08-27 00:00:00+02:00</td>
+<td>2026-08-27 00:00:00+02:00</td>
+<td>2026-08-27 00:00:00+02:00</td>
+<td>2026-09-01 00:00:00+02:00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="section-8" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_unavailability_of_production_units" class="level1">
+<h1>.query_unavailability_of_production_units</h1>
+<p>(country_code, start, end, docstatus=None, periodstartupdate=None, periodendupdate=None) -&gt; pd.DataFrame</p>
+<div id="7a363449" class="cell" data-execution_count="73">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>unavailability_of_production_units <span class="op">=</span> entsoe_client.query_unavailability_of_production_units(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    country_code<span class="op">=</span>country_code, </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week, </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>today, </span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    docstatus<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    periodstartupdate<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    periodendupdate<span class="op">=</span><span class="va">None</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="5d298d51" class="cell" data-execution_count="74">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>unavailability_of_production_units.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+DatetimeIndex: 79 entries, 2025-11-28 14:52:35+01:00 to 2026-09-03 18:13:56+02:00
+Data columns (total 18 columns):
+ #   Column                        Non-Null Count  Dtype                        
+---  ------                        --------------  -----                        
+ 0   avail_qty                     79 non-null     str                          
+ 1   biddingzone_domain            79 non-null     str                          
+ 2   businesstype                  79 non-null     str                          
+ 3   curvetype                     79 non-null     str                          
+ 4   docstatus                     0 non-null      object                       
+ 5   end                           79 non-null     datetime64[us, Europe/Madrid]
+ 6   mrid                          79 non-null     str                          
+ 7   nominal_power                 79 non-null     float64                      
+ 8   plant_type                    79 non-null     str                          
+ 9   production_resource_id        79 non-null     str                          
+ 10  production_resource_location  79 non-null     str                          
+ 11  production_resource_name      79 non-null     str                          
+ 12  production_resource_psr_name  79 non-null     str                          
+ 13  pstn                          79 non-null     str                          
+ 14  qty_uom                       79 non-null     str                          
+ 15  resolution                    79 non-null     str                          
+ 16  revision                      79 non-null     int64                        
+ 17  start                         79 non-null     datetime64[us, Europe/Madrid]
+dtypes: datetime64[us, Europe/Madrid](2), float64(1), int64(1), object(1), str(13)
+memory usage: 11.7+ KB</code></pre>
+</div>
+</div>
+<div id="dba6aa39" class="cell" data-execution_count="75">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>unavailability_of_production_units.head().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="75">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">created_doc_time</th>
+<th data-quarto-table-cell-role="th">2025-11-28 14:52:35+01:00</th>
+<th data-quarto-table-cell-role="th">2025-11-28 14:52:37+01:00</th>
+<th data-quarto-table-cell-role="th">2025-11-28 14:52:40+01:00</th>
+<th data-quarto-table-cell-role="th">2025-11-28 14:52:41+01:00</th>
+<th data-quarto-table-cell-role="th">2025-11-28 14:52:54+01:00</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">avail_qty</th>
+<td>470.9</td>
+<td>0</td>
+<td>219.6</td>
+<td>200</td>
+<td>1403</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">biddingzone_domain</th>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">businesstype</th>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">curvetype</th>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">docstatus</th>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">end</th>
+<td>2026-09-29 00:00:00+02:00</td>
+<td>2026-10-10 00:00:00+02:00</td>
+<td>2026-08-28 00:00:00+02:00</td>
+<td>2026-08-28 00:00:00+02:00</td>
+<td>2026-08-31 00:00:00+02:00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">mrid</th>
+<td>W8hleaF265q8SFPj7uZmDw</td>
+<td>V67XFIuESXvPBrexBJVN1g</td>
+<td>hVoJdXdughdIeG3agmUDRg</td>
+<td>6TPCsLwhBYk8N2NEFBocOA</td>
+<td>xCy4re6HqZHDiXMW3QA26g</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">nominal_power</th>
+<td>625.9</td>
+<td>420.0</td>
+<td>439.2</td>
+<td>400.0</td>
+<td>1857.7</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">plant_type</th>
+<td>Hydro Water Reservoir</td>
+<td>Hydro Pumped Storage</td>
+<td>Hydro Pumped Storage</td>
+<td>Hydro Pumped Storage</td>
+<td>Hydro Water Reservoir</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">production_resource_id</th>
+<td>18WSBEU-12345-0Q</td>
+<td>18WTJEB-12345-0X</td>
+<td>18WSLTG-12345-0T</td>
+<td>18WSLTB-12345-05</td>
+<td>18WEBRFEN-123-0T</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">production_resource_location</th>
+<td>Spain</td>
+<td>Málaga</td>
+<td>Lleida</td>
+<td>Lleida</td>
+<td>Spain</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">production_resource_name</th>
+<td>SIL-BIB-EU</td>
+<td>TAJOENC B</td>
+<td>SALLENT G</td>
+<td>SALLENT B</td>
+<td>ENH-FEC-GR</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">production_resource_psr_name</th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">pstn</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">qty_uom</th>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">resolution</th>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">revision</th>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">start</th>
+<td>2026-08-31 00:00:00+02:00</td>
+<td>2026-08-24 00:00:00+02:00</td>
+<td>2026-08-27 00:00:00+02:00</td>
+<td>2026-08-27 00:00:00+02:00</td>
+<td>2026-08-24 00:00:00+02:00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="section-9" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_unavailability_transmission" class="level1">
+<h1>.query_unavailability_transmission</h1>
+<p>(country_code_from, country_code_to, start=start, end=end, docstatus=None, periodstartupdate=None, periodendupdate=None) -&gt; pd.DataFrame</p>
+<div id="7a1c3b69" class="cell" data-execution_count="76">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>unavailability_transmissions_spain_to_france <span class="op">=</span> entsoe_client.query_unavailability_transmission(</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    country_code_from<span class="op">=</span><span class="st">"ES"</span>,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    country_code_to<span class="op">=</span><span class="st">"FR"</span>,</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week, </span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>today, </span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    docstatus<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    periodstartupdate<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    periodendupdate<span class="op">=</span><span class="va">None</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="7cc7d428" class="cell" data-execution_count="77">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>unavailability_transmissions_spain_to_france.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+DatetimeIndex: 477 entries, 2025-12-01 11:30:14+01:00 to 2026-09-03 21:12:21+02:00
+Data columns (total 13 columns):
+ #   Column        Non-Null Count  Dtype                        
+---  ------        --------------  -----                        
+ 0   docstatus     2 non-null      object                       
+ 1   mrid          477 non-null    str                          
+ 2   revision      477 non-null    int64                        
+ 3   businesstype  477 non-null    str                          
+ 4   in_domain     477 non-null    str                          
+ 5   out_domain    477 non-null    str                          
+ 6   qty_uom       477 non-null    str                          
+ 7   curvetype     477 non-null    str                          
+ 8   start         477 non-null    datetime64[us, Europe/Madrid]
+ 9   end           477 non-null    datetime64[us, Europe/Madrid]
+ 10  resolution    477 non-null    str                          
+ 11  pstn          477 non-null    str                          
+ 12  avail_qty     477 non-null    str                          
+dtypes: datetime64[us, Europe/Madrid](2), int64(1), object(1), str(9)
+memory usage: 52.2+ KB</code></pre>
+</div>
+</div>
+<div id="1f939c8e" class="cell" data-execution_count="78">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>unavailability_transmissions_spain_to_france.head().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">created_doc_time</th>
+<th data-quarto-table-cell-role="th">2025-12-01 11:30:14+01:00</th>
+<th data-quarto-table-cell-role="th">2025-12-01 11:30:14+01:00</th>
+<th data-quarto-table-cell-role="th">2025-12-01 11:30:14+01:00</th>
+<th data-quarto-table-cell-role="th">2025-12-01 11:32:42+01:00</th>
+<th data-quarto-table-cell-role="th">2025-12-01 11:32:42+01:00</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">docstatus</th>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">mrid</th>
+<td>wAb4T-TR-PDXJbelKnaqrg</td>
+<td>wAb4T-TR-PDXJbelKnaqrg</td>
+<td>wAb4T-TR-PDXJbelKnaqrg</td>
+<td>JewQ2pv_Lg01o5y3f41vVg</td>
+<td>JewQ2pv_Lg01o5y3f41vVg</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">revision</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">businesstype</th>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+<td>Planned maintenance</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">in_domain</th>
+<td>FR</td>
+<td>FR</td>
+<td>FR</td>
+<td>FR</td>
+<td>FR</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">out_domain</th>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">qty_uom</th>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">curvetype</th>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">start</th>
+<td>2026-08-24 07:00:00+02:00</td>
+<td>2026-08-28 23:59:00+02:00</td>
+<td>2026-08-30 23:59:00+02:00</td>
+<td>2026-08-28 23:59:00+02:00</td>
+<td>2026-08-17 08:00:00+02:00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">end</th>
+<td>2026-08-28 23:59:00+02:00</td>
+<td>2026-08-30 23:59:00+02:00</td>
+<td>2026-08-31 23:00:00+02:00</td>
+<td>2026-08-30 23:59:00+02:00</td>
+<td>2026-08-28 23:59:00+02:00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">resolution</th>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">pstn</th>
+<td>1</td>
+<td>6780</td>
+<td>9660</td>
+<td>16800</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">avail_qty</th>
+<td>750</td>
+<td>1550</td>
+<td>750</td>
+<td>1550</td>
+<td>750</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="section-10" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_withdrawn_unavailability_of_generation_units" class="level1">
+<h1>.query_withdrawn_unavailability_of_generation_units</h1>
+<p>(country_code, start, end) -&gt; pd.DataFrame</p>
+<div id="49b248b8" class="cell" data-execution_count="79">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>withdrawn_unavailability_of_generation_units <span class="op">=</span> entsoe_client.query_withdrawn_unavailability_of_generation_units(</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    country_code<span class="op">=</span>country_code, </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>last_week, </span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>today</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="feba8e47" class="cell" data-execution_count="80">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>withdrawn_unavailability_of_generation_units.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+DatetimeIndex: 39 entries, 2026-02-24 15:15:15+01:00 to 2026-09-02 17:47:33+02:00
+Data columns (total 18 columns):
+ #   Column                        Non-Null Count  Dtype                        
+---  ------                        --------------  -----                        
+ 0   avail_qty                     39 non-null     str                          
+ 1   biddingzone_domain            39 non-null     str                          
+ 2   businesstype                  39 non-null     str                          
+ 3   curvetype                     39 non-null     str                          
+ 4   docstatus                     39 non-null     str                          
+ 5   end                           39 non-null     datetime64[us, Europe/Madrid]
+ 6   mrid                          39 non-null     str                          
+ 7   nominal_power                 39 non-null     float64                      
+ 8   plant_type                    39 non-null     str                          
+ 9   production_resource_id        39 non-null     str                          
+ 10  production_resource_location  39 non-null     str                          
+ 11  production_resource_name      39 non-null     str                          
+ 12  production_resource_psr_name  39 non-null     str                          
+ 13  pstn                          39 non-null     str                          
+ 14  qty_uom                       39 non-null     str                          
+ 15  resolution                    39 non-null     str                          
+ 16  revision                      39 non-null     int64                        
+ 17  start                         39 non-null     datetime64[us, Europe/Madrid]
+dtypes: datetime64[us, Europe/Madrid](2), float64(1), int64(1), str(14)
+memory usage: 5.8 KB</code></pre>
+</div>
+</div>
+<div id="c83abf70" class="cell" data-execution_count="81">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>withdrawn_unavailability_of_generation_units.head().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">created_doc_time</th>
+<th data-quarto-table-cell-role="th">2026-02-24 15:15:15+01:00</th>
+<th data-quarto-table-cell-role="th">2026-03-27 02:48:06+01:00</th>
+<th data-quarto-table-cell-role="th">2026-08-22 10:40:32+02:00</th>
+<th data-quarto-table-cell-role="th">2026-08-27 21:08:08+02:00</th>
+<th data-quarto-table-cell-role="th">2026-08-27 21:27:40+02:00</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">avail_qty</th>
+<td>151.3</td>
+<td>124</td>
+<td>265</td>
+<td>210</td>
+<td>90</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">biddingzone_domain</th>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+<td>ES</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">businesstype</th>
+<td>Unplanned outage</td>
+<td>Unplanned outage</td>
+<td>Unplanned outage</td>
+<td>Unplanned outage</td>
+<td>Unplanned outage</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">curvetype</th>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+<td>A03</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">docstatus</th>
+<td>Withdrawn</td>
+<td>Withdrawn</td>
+<td>Withdrawn</td>
+<td>Withdrawn</td>
+<td>Withdrawn</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">end</th>
+<td>2026-10-01 00:00:00+02:00</td>
+<td>2026-10-01 00:00:00+02:00</td>
+<td>2026-09-01 00:00:00+02:00</td>
+<td>2026-08-27 19:40:00+02:00</td>
+<td>2026-08-27 20:37:00+02:00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">mrid</th>
+<td>Wcivt3WtHqh9CU7MAClkHQ</td>
+<td>oUrFHCOxKFLpZ3q4AHiCew</td>
+<td>PbxiaB0hGomKpg2GhTJnOg</td>
+<td>WMxIKkTSXdUrzS7vlREMyg</td>
+<td>cyLplfhqPv1p_e99aekGgg</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">nominal_power</th>
+<td>302.7</td>
+<td>302.7</td>
+<td>411.9</td>
+<td>399.7</td>
+<td>399.7</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">plant_type</th>
+<td>Fossil Gas</td>
+<td>Fossil Gas</td>
+<td>Fossil Gas</td>
+<td>Fossil Gas</td>
+<td>Fossil Gas</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">production_resource_id</th>
+<td>18WPGR5-123456-J</td>
+<td>18WPGR5-123456-J</td>
+<td>18WBES3-12345-0V</td>
+<td>18WBES4-12345-0L</td>
+<td>18WBES4-12345-0L</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">production_resource_location</th>
+<td>A Coruña</td>
+<td>A Coruña</td>
+<td>Barcelona</td>
+<td>Barcelona</td>
+<td>Barcelona</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">production_resource_name</th>
+<td>P.G.RODR 5</td>
+<td>P.G.RODR 5</td>
+<td>BESOS 3</td>
+<td>BESOS 4</td>
+<td>BESOS 4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">production_resource_psr_name</th>
+<td>PGR5TV</td>
+<td>PGR5TV</td>
+<td>BESOS 3</td>
+<td>BESOS 4</td>
+<td>BESOS 4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">pstn</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">qty_uom</th>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+<td>MAW</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">resolution</th>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+<td>PT1M</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">revision</th>
+<td>2</td>
+<td>2</td>
+<td>7</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">start</th>
+<td>2026-05-04 00:00:00+02:00</td>
+<td>2026-05-04 00:00:00+02:00</td>
+<td>2026-08-24 00:00:00+02:00</td>
+<td>2026-08-27 19:16:00+02:00</td>
+<td>2026-08-27 19:41:00+02:00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="section-11" class="level83">
+<p class="heading"></p>
+</section>
+</section>
+<section id="query_unavailability_of_offshore_grid" class="level1">
+<h1>.query_unavailability_of_offshore_grid</h1>
+<p>(area_code, start, end) -&gt; pd.DataFrame</p>
+<div id="c48e09e8" class="cell" data-execution_count="83">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unavailability_of_offshore_grid = entsoe_client.query_unavailability_of_offshore_grid(</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     area_code="FR",</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     start=last_week,</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     end=today</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
