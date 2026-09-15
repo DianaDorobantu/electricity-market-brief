@@ -452,31 +452,31 @@ show_load("Luxembourg")
 ## Spain
 
 ``` {python}
-show_load("Spain")
+# show_load("Spain")
 ```
 
 ## Portugal
 
 ``` {python}
-show_load("Portugal")
+# show_load("Portugal")
 ```
 
 ## Italy
 
 ``` {python}
-show_load("Italy")
+# show_load("Italy")
 ```
 
 ## Greece
 
 ``` {python}
-show_load("Greece")
+# show_load("Greece")
 ```
 
 ## Cyprus
 
 ``` {python}
-show_load("Cyprus")
+# show_load("Cyprus")
 ```
 
 ## Georgia
@@ -501,43 +501,43 @@ show_load("Georgia")
 ## Croatia
 
 ``` {python}
-show_load("Croatia")
+# show_load("Croatia")
 ```
 
 ## Bosnia Herzegovina
 
 ``` {python}
-show_load("Bosnia Herzegovina")
+# show_load("Bosnia Herzegovina")
 ```
 
 ## Serbia
 
 ``` {python}
-show_load("Serbia")
+# show_load("Serbia")
 ```
 
 ## Montenegro
 
 ``` {python}
-show_load("Montenegro")
+# show_load("Montenegro")
 ```
 
 ## Kosovo
 
 ``` {python}
-show_load("Kosovo")
+# show_load("Kosovo")
 ```
 
 ## Albania
 
 ``` {python}
-show_load("Albania")
+# show_load("Albania")
 ```
 
 ## North Macedonia
 
 ``` {python}
-show_load("North Macedonia")
+# show_load("North Macedonia")
 ```
 
 :::
@@ -555,43 +555,43 @@ show_load("North Macedonia")
 ## Slovakia
 
 ``` {python}
-show_load("Slovakia")
+# show_load("Slovakia")
 ```
 
 ## Slovenia
 
 ``` {python}
-show_load("Slovenia")
+# show_load("Slovenia")
 ```
 
 ## Czech Republic
 
 ``` {python}
-show_load("Czech Republic")
+# show_load("Czech Republic")
 ```
 
 ## Poland
 
 ``` {python}
-show_load("Poland")
+# show_load("Poland")
 ```
 
 ## Hungary
 
 ``` {python}
-show_load("Hungary")
+# show_load("Hungary")
 ```
 
 ## Romania
 
 ``` {python}
-show_load("Romania")
+# show_load("Romania")
 ```
 
 ## Moldova
 
 ``` {python}
-show_load("Moldova")
+# show_load("Moldova")
 ```
 :::
 
@@ -607,19 +607,19 @@ show_load("Moldova")
 ## Estonia
 
 ``` {python}
-show_load("Estonia")
+# show_load("Estonia")
 ```
 
 ## Latvia
 
 ``` {python}
-show_load("Latvia")
+# show_load("Latvia")
 ```
 
 ## Lithuania
 
 ``` {python}
-show_load("Lithuania")
+# show_load("Lithuania")
 ```
 :::
 
