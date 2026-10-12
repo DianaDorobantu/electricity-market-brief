@@ -1,1 +1,7 @@
-<p>Report using ENTSOE data to create a brief understanig of european electricity market.</p>
+> ⚠️ **This project is under active development, briefly paused for a visit to lovely Warsaw.**
+
+<p align="center">
+  <img src="assets/under_construction.gif" width="450" alt="Under Construction">
+</p>
+
+Things may break. Features may disappear. Coffee is being consumed at alarming rates. ☕
