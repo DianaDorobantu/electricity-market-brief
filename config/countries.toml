@@ -1,0 +1,144 @@
+[countries.Denmark]
+code = "DK"
+timezone = "Europe/Copenhagen"
+
+[countries.Norway]
+code = "NO"
+timezone = "Europe/Oslo"
+
+[countries.Sweden]
+code = "SE"
+timezone = "Europe/Stockholm"
+
+[countries.Finland]
+code = "FI"
+timezone = "Europe/Helsinki"
+
+[countries.Iceland]
+code = "IS"
+timezone = "Atlantic/Reykjavik"
+
+
+[countries.Germany]
+code = "DE"
+timezone = "Europe/Berlin"
+
+[countries.France]
+code = "FR"
+timezone = "Europe/Paris"
+
+[countries.Netherlands]
+code = "NL"
+timezone = "Europe/Amsterdam"
+
+[countries.Belgium]
+code = "BE"
+timezone = "Europe/Brussels"
+
+[countries.Luxembourg]
+code = "LU"
+timezone = "Europe/Luxembourg"
+
+[countries.Switzerland]
+code = "CH"
+timezone = "Europe/Zurich"
+
+[countries.Austria]
+code = "AT"
+timezone = "Europe/Vienna"
+
+
+[countries.Spain]
+code = "ES"
+timezone = "Europe/Madrid"
+
+[countries.Portugal]
+code = "PT"
+timezone = "Europe/Lisbon"
+
+[countries.Italy]
+code = "IT"
+timezone = "Europe/Rome"
+
+[countries.Greece]
+code = "GR"
+timezone = "Europe/Athens"
+
+[countries.Cyprus]
+code = "CY"
+timezone = "Asia/Nicosia"
+
+[countries.Georgia]
+code = "GE"
+timezone = "Asia/Tbilisi"
+
+
+[countries.Croatia]
+code = "HR"
+timezone = "Europe/Zagreb"
+
+[countries."Bosnia Herzegovina"]
+code = "BA"
+timezone = "Europe/Sarajevo"
+
+[countries.Serbia]
+code = "RS"
+timezone = "Europe/Belgrade"
+
+[countries.Montenegro]
+code = "ME"
+timezone = "Europe/Podgorica"
+
+[countries.Kosovo]
+code = "XK"
+timezone = "Europe/Rome"
+
+[countries.Albania]
+code = "AL"
+timezone = "Europe/Tirane"
+
+[countries."North Macedonia"]
+code = "MK"
+timezone = "Europe/Skopje"
+
+
+[countries.Slovakia]
+code = "SK"
+timezone = "Europe/Bratislava"
+
+[countries.Slovenia]
+code = "SI"
+timezone = "Europe/Ljubljana"
+
+[countries."Czech Republic"]
+code = "CZ"
+timezone = "Europe/Prague"
+
+[countries.Poland]
+code = "PL"
+timezone = "Europe/Warsaw"
+
+[countries.Hungary]
+code = "HU"
+timezone = "Europe/Budapest"
+
+[countries.Romania]
+code = "RO"
+timezone = "Europe/Bucharest"
+
+[countries.Moldova]
+code = "MD"
+timezone = "Europe/Chisinau"
+
+
+[countries.Estonia]
+code = "EE"
+timezone = "Europe/Tallinn"
+
+[countries.Latvia]
+code = "LV"
+timezone = "Europe/Riga"
+
+[countries.Lithuania]
+code = "LT"
+timezone = "Europe/Vilnius"
