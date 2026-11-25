@@ -1,0 +1,312 @@
+
+/*-- scss:defaults --*/
+
+// Colour palette
+$navy: #102d50;
+$navy-light: #1b426d;
+$gold: #e5aa35;
+$gold-light: #f7edda;
+
+$background: #f7f8fa;
+$surface: #ffffff;
+$text: #24364b;
+$text-muted: #718096;
+
+$border-color: #e3e8ef;
+
+// Typography
+$font-family-sans-serif: "Inter", "Segoe UI", sans-serif;
+$headings-font-family: "Georgia", "Times New Roman", serif;
+$headings-font-weight: 600;
+
+$body-bg: $background;
+$body-color: $text;
+
+$link-color: $navy-light;
+$link-hover-color: $gold;
+
+$navbar-bg: $navy;
+$navbar-fg: #ffffff;
+
+$toc-color: $navy;
+$toc-active-border: $gold;
+
+
+/*-- scss:rules --*/
+
+// General layout
+body {
+  font-size: 0.96rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+#quarto-content {
+  background: $background;
+}
+
+main {
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
+}
+
+// Main title
+#title-block-header {
+  padding: 2.5rem 0 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid $gold;
+}
+
+#title-block-header .title {
+  color: $navy;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+#title-block-header .subtitle {
+  color: $text-muted;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+}
+
+#title-block-header .quarto-title-meta {
+  color: $text-muted;
+  font-size: 0.85rem;
+}
+
+// Section headings
+h1, h2, h3, h4 {
+  color: $navy;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  margin-top: 2.8rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid $border-color;
+  font-size: 1.8rem;
+}
+
+h3 {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+}
+
+h4 {
+  font-size: 1.1rem;
+}
+
+// Table of contents
+#TOC {
+  font-size: 0.88rem;
+}
+
+#TOC a {
+  color: $text-muted;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#TOC a:hover,
+#TOC .active {
+  color: $navy;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a {
+  border-left: 2px solid transparent;
+  padding-left: 0.75rem;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a.active {
+  border-left-color: $gold;
+  font-weight: 600;
+}
+
+// Links
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+// Cards and callouts
+.card {
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(16, 45, 80, 0.04);
+}
+
+.callout {
+  border-radius: 10px;
+  border-left-width: 4px;
+  box-shadow: 0 2px 8px rgba(16, 45, 80, 0.03);
+}
+
+
+/* Executive Summary KPI widgets */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.kpi-card {
+  position: relative;
+  padding: 1.25rem;
+  background: $surface;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(16, 45, 80, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  // Gold accent along the top
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: $gold;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(16, 45, 80, 0.09);
+  }
+}
+
+.kpi-label {
+  color: $text-muted;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+.kpi-value {
+  color: $navy;
+  font-family: $headings-font-family;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+  overflow-wrap: anywhere;
+}
+
+.kpi-unit {
+  font-family: $font-family-sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: $text-muted;
+}
+
+.kpi-note {
+  color: $text-muted;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 992px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-card {
+    padding: 1rem;
+  }
+}
+
+
+// Tables
+.table {
+  background: $surface;
+  border-color: $border-color;
+  font-size: 0.9rem;
+}
+
+.table thead th {
+  background: $navy;
+  color: white;
+  font-weight: 600;
+  border-color: $navy;
+}
+
+.table tbody tr:nth-child(even) {
+  background: #f3f6fa;
+}
+
+.table tbody tr:hover {
+  background: $gold-light;
+}
+
+// Code blocks
+div.sourceCode {
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  background: #f0f3f7;
+}
+
+pre {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+// Figures and charts
+figure {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+figure figcaption {
+  color: $text-muted;
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
+.plotly {
+  border-radius: 12px;
+}
+
+// Horizontal rules
+hr {
+  border: 0;
+  border-top: 1px solid $border-color;
+  margin: 2.5rem 0;
+}
+
+// Footer
+.nav-footer {
+  background: $navy;
+  color: #dce5ef;
+  border-top: 3px solid $gold;
+  font-size: 0.85rem;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  #title-block-header {
+    padding: 1.5rem 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  main {
+    padding-top: 1rem;
+  }
+}
