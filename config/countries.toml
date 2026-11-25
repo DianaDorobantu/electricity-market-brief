@@ -24,7 +24,6 @@ eic = "10YFR-RTE------C"
 description = "France, RTE BZ / CA / MBA"
 
 
-
 [countries.Netherlands]
 name = "Netherlands"
 country_code = "NL"
@@ -45,12 +44,6 @@ timezone = "Europe/Brussels"
 name = "BE"
 eic = "10YBE----------2"
 description = "Belgium, Elia BZ / CA / MBA"
-
-
-[countries.Luxembourg]
-name = "Luxembourg"
-country_code = "LU"
-timezone = "Europe/Luxembourg"
 
 
 [countries.Switzerland]
