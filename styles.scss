@@ -164,6 +164,59 @@ a {
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
+  .kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.kpi-card {
+  padding: 1.2rem;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  background: var(--bs-card-bg, #fff);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.kpi-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-bottom: 0.5rem;
+}
+
+.kpi-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.kpi-unit {
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.kpi-note {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 0.6rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 500px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
   // Gold accent along the top
   &::before {
     content: "";
