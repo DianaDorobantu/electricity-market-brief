@@ -1,0 +1,135 @@
+2026-11-25 20:05:50,867 INFO report: Starting report for 2026-11-25.
+2026-11-25 20:05:50,887 INFO report: Fetching day-ahead prices for DE_LU from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:06:08,142 INFO report: Fetching day-ahead prices for FR from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:06:25,966 INFO report: Fetching day-ahead prices for NL from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:06:39,326 INFO report: Fetching day-ahead prices for BE from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:07:02,021 INFO report: Fetching day-ahead prices for CH from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:07:23,933 INFO report: Fetching day-ahead prices for AT from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:07:50,694 INFO report: Fetching day-ahead prices for ES from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:08:04,277 INFO report: Fetching day-ahead prices for PT from 2026-11-18 00:00:00+00:00 to 2026-11-25 00:00:00+00:00
+2026-11-25 20:08:28,149 INFO report: Fetching day-ahead prices for IT_NORD from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:08:37,348 INFO report: Fetching day-ahead prices for IT_CNOR from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:08:53,011 INFO report: Fetching day-ahead prices for IT_CSUD from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:09:05,855 INFO report: Fetching day-ahead prices for IT_SUD from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:09:20,153 INFO report: Fetching day-ahead prices for IT_CALA from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:09:41,959 INFO report: Fetching day-ahead prices for IT_SARD from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:09:43,297 INFO report: Fetching day-ahead prices for IT_SICI from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:10:04,384 INFO report: Fetching day-ahead prices for GR from 2026-11-18 00:00:00+02:00 to 2026-11-25 00:00:00+02:00
+2026-11-25 20:10:21,499 INFO report: Fetching day-ahead prices for CY from 2026-11-18 00:00:00+02:00 to 2026-11-25 00:00:00+02:00
+2026-11-25 20:10:46,913 INFO report: Fetching day-ahead prices for GE from 2026-11-19 00:00:00+04:00 to 2026-11-26 00:00:00+04:00
+2026-11-25 20:11:01,628 ERROR report: Failed to fetch prices for Georgia (GE).
+Traceback (most recent call last):
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/src/market_data.py", line 133, in load_day_ahead_data
+    prices = fetch_da_prices(
+        client=client,
+    ...<3 lines>...
+        end=end,
+    )
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/src/market_data.py", line 85, in fetch_da_prices
+    return client.query_day_ahead_prices(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        country_code=country_code,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start=start,
+        ^^^^^^^^^^^^
+        end=end,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/.venv/lib/python3.14/site-packages/entsoe/entsoe.py", line 1298, in query_day_ahead_prices
+    series = self._query_day_ahead_prices(
+        area,
+        start=start-pd.Timedelta(days=1),
+        end=end+pd.Timedelta(days=1)
+    )
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/.venv/lib/python3.14/site-packages/entsoe/decorators.py", line 157, in year_wrapper
+    raise NoMatchingDataError
+entsoe.exceptions.NoMatchingDataError
+2026-11-25 20:11:01,648 INFO report: Fetching day-ahead prices for HR from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:11:20,169 INFO report: Fetching day-ahead prices for BA from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:11:21,595 ERROR report: Failed to fetch prices for Bosnia Herzegovina (BA).
+Traceback (most recent call last):
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/src/market_data.py", line 133, in load_day_ahead_data
+    prices = fetch_da_prices(
+        client=client,
+    ...<3 lines>...
+        end=end,
+    )
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/src/market_data.py", line 85, in fetch_da_prices
+    return client.query_day_ahead_prices(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        country_code=country_code,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start=start,
+        ^^^^^^^^^^^^
+        end=end,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/.venv/lib/python3.14/site-packages/entsoe/entsoe.py", line 1298, in query_day_ahead_prices
+    series = self._query_day_ahead_prices(
+        area,
+        start=start-pd.Timedelta(days=1),
+        end=end+pd.Timedelta(days=1)
+    )
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/.venv/lib/python3.14/site-packages/entsoe/decorators.py", line 157, in year_wrapper
+    raise NoMatchingDataError
+entsoe.exceptions.NoMatchingDataError
+2026-11-25 20:11:21,606 INFO report: Fetching day-ahead prices for RS from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:11:45,461 INFO report: Fetching day-ahead prices for ME from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:11:46,346 INFO report: Fetching day-ahead prices for XK from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:12:09,310 INFO report: Fetching day-ahead prices for AL from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:12:09,720 INFO report: Fetching day-ahead prices for MK from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:12:31,025 INFO report: Fetching day-ahead prices for SK from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:12:55,312 INFO report: Fetching day-ahead prices for SI from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:12:55,725 INFO report: Fetching day-ahead prices for CZ from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:12:56,114 INFO report: Fetching day-ahead prices for PL from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:13:21,505 INFO report: Fetching day-ahead prices for HU from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:14:15,418 INFO report: Fetching day-ahead prices for RO from 2026-11-18 00:00:00+02:00 to 2026-11-25 00:00:00+02:00
+2026-11-25 20:14:45,989 INFO report: Fetching day-ahead prices for MD from 2026-11-18 00:00:00+02:00 to 2026-11-25 00:00:00+02:00
+2026-11-25 20:14:58,040 INFO report: Fetching day-ahead prices for EE from 2026-11-18 00:00:00+02:00 to 2026-11-25 00:00:00+02:00
+2026-11-25 20:14:59,609 INFO report: Fetching day-ahead prices for LV from 2026-11-18 00:00:00+02:00 to 2026-11-25 00:00:00+02:00
+2026-11-25 20:15:30,550 INFO report: Fetching day-ahead prices for LT from 2026-11-18 00:00:00+02:00 to 2026-11-25 00:00:00+02:00
+2026-11-25 20:15:41,696 INFO report: Fetching day-ahead prices for DK_1 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:16:03,543 INFO report: Fetching day-ahead prices for DK_2 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:16:07,108 INFO report: Fetching day-ahead prices for NO_1 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:16:39,243 INFO report: Fetching day-ahead prices for NO_2 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:16:39,767 INFO report: Fetching day-ahead prices for NO_3 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:16:55,932 INFO report: Fetching day-ahead prices for NO_4 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:17:12,526 INFO report: Fetching day-ahead prices for NO_5 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:17:29,318 INFO report: Fetching day-ahead prices for SE_1 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:17:31,486 INFO report: Fetching day-ahead prices for SE_2 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:17:33,863 INFO report: Fetching day-ahead prices for SE_3 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:17:48,195 INFO report: Fetching day-ahead prices for SE_4 from 2026-11-18 00:00:00+01:00 to 2026-11-25 00:00:00+01:00
+2026-11-25 20:18:12,841 INFO report: Fetching day-ahead prices for FI from 2026-11-18 00:00:00+02:00 to 2026-11-25 00:00:00+02:00
+2026-11-25 20:18:32,606 INFO report: Fetching day-ahead prices for IS from 2026-11-18 00:00:00+00:00 to 2026-11-25 00:00:00+00:00
+2026-11-25 20:18:41,821 ERROR report: Failed to fetch prices for Iceland (IS).
+Traceback (most recent call last):
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/src/market_data.py", line 133, in load_day_ahead_data
+    prices = fetch_da_prices(
+        client=client,
+    ...<3 lines>...
+        end=end,
+    )
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/src/market_data.py", line 85, in fetch_da_prices
+    return client.query_day_ahead_prices(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        country_code=country_code,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start=start,
+        ^^^^^^^^^^^^
+        end=end,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/.venv/lib/python3.14/site-packages/entsoe/entsoe.py", line 1298, in query_day_ahead_prices
+    series = self._query_day_ahead_prices(
+        area,
+        start=start-pd.Timedelta(days=1),
+        end=end+pd.Timedelta(days=1)
+    )
+  File "/Users/ddx/Workspace/repos/electricity-market-brief/.venv/lib/python3.14/site-packages/entsoe/decorators.py", line 157, in year_wrapper
+    raise NoMatchingDataError
+entsoe.exceptions.NoMatchingDataError
+2026-11-25 20:18:41,904 INFO report: Retrieved 25989 observations across 45 bidding zones.
+2026-11-25 20:18:41,982 INFO report: Calculated statistics for 45 bidding zones.

@@ -1,0 +1,295 @@
+---
+title: "European Electricity Market Report"
+subtitle: "☕️ Energy Espresso of the Day"
+author: "Diana Dorobantu"
+date: today
+date-format: "D MMMM  YYYY"
+
+format:
+  html:
+    theme:
+        - cosmo
+        - styles.scss
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+    smooth-scroll: true
+    page-layout: full
+    df-print: paged
+    fig-width: 12
+    fig-height: 6
+    fig-dpi: 150
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
+
+jupyter: python3
+---
+
+# Summary
+
+This report analyses day-ahead electricity prices
+across the European bidding zones. The analysis uses data retrieved from the ENTSO-E
+Transparency Platform and focuses on the most recent
+7 days of available market data.
+
+
+```{python}
+# Import libs
+import pandas as pd
+import numpy as np
+
+import os
+import sys
+from pathlib import Path
+
+import plotly.express as px
+from IPython.display import Markdown, HTML, display 
+
+PROJECT_ROOT = Path.cwd()
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
+
+from market_data import load_day_ahead_data
+from market_analysis import (
+    calculate_market_statistics,
+    calculate_hourly_patterns,
+    calculate_daily_prices,
+    identify_price_extremes,
+    generate_executive_summary,
+)
+```
+
+
+```{python}
+# Logging config
+from logging_config import setup_logging
+logger = setup_logging()
+```
+
+
+# Day-Ahead Market
+
+
+## Overview
+
+```{python}
+# Retrieve the most recent seven days of data
+prices_long = load_day_ahead_data(days=7)
+```
+
+```{python}
+# Market analysis
+market_stats = calculate_market_statistics(prices_long)
+hourly_patterns = calculate_hourly_patterns(prices_long)
+daily_prices = calculate_daily_prices(prices_long)
+price_extremes = identify_price_extremes(prices_long)
+```
+
+```{python}
+# Clean the data for KPI calculations
+kpi_data = prices_long.copy()
+kpi_data["price"] = pd.to_numeric(kpi_data["price"], errors="coerce")
+kpi_data["timestamp"] = pd.to_datetime(
+    kpi_data["timestamp"], errors="coerce"
+)
+
+kpi_data = kpi_data.dropna(subset=["price", "timestamp"])
+
+# KPI calculations
+average_price = kpi_data["price"].mean()
+
+highest_idx = kpi_data["price"].idxmax()
+lowest_idx = kpi_data["price"].idxmin()
+
+highest_row = kpi_data.loc[highest_idx]
+lowest_row = kpi_data.loc[lowest_idx]
+
+highest_price = highest_row["price"]
+highest_zone = highest_row["bidding_zone"]
+highest_time = highest_row["timestamp"]
+
+lowest_price = lowest_row["price"]
+lowest_zone = lowest_row["bidding_zone"]
+lowest_time = lowest_row["timestamp"]
+
+negative_count = int((kpi_data["price"] < 0).sum())
+negative_pct = negative_count / len(kpi_data) * 100
+
+# Formatting
+average_price_text = f"{average_price:,.2f}"
+highest_price_text = f"{highest_price:,.2f}"
+lowest_price_text = f"{lowest_price:,.2f}"
+
+highest_time_text = highest_time.strftime("%Y-%m-%d %H:%M")
+lowest_time_text = lowest_time.strftime("%Y-%m-%d %H:%M")
+```
+
+::: {.kpi-grid}
+
+::: {.kpi-card}
+<div class="kpi-label">Average day-ahead price</div>
+<div class="kpi-value">
+  `{python} average_price_text`
+  <span class="kpi-unit">€/MWh</span>
+</div>
+<div class="kpi-note">Average across selected zones</div>
+:::
+
+::: {.kpi-card}
+<div class="kpi-label">Highest recorded price</div>
+<div class="kpi-value">
+  `{python} highest_price_text`
+  <span class="kpi-unit">€/MWh</span>
+</div>
+<div class="kpi-note">
+  `{python} highest_zone` · `{python} highest_time_text`
+</div>
+:::
+
+::: {.kpi-card}
+<div class="kpi-label">Lowest recorded price</div>
+<div class="kpi-value">
+  `{python} lowest_price_text`
+  <span class="kpi-unit">€/MWh</span>
+</div>
+<div class="kpi-note">
+  `{python} lowest_zone` · `{python} lowest_time_text`
+</div>
+:::
+
+::: {.kpi-card}
+<div class="kpi-label">Negative-price hours</div>
+<div class="kpi-value">
+  `{python} negative_count`
+</div>
+<div class="kpi-note">
+  `{python} f"{negative_pct:.2f}%"` of observations
+</div>
+:::
+
+:::
+
+```{python}
+# Create an interactive line chart.
+fig = px.line(
+    prices_long,
+    x="timestamp",
+    y="price",
+    color="bidding_zone",
+    title="Day-Ahead Electricity Prices by Bidding Zone",
+    labels={
+        "timestamp": "Date and time",
+        "price": "Price (€/MWh)",
+        "bidding_zone": "Bidding zone",
+    },
+    template="plotly_white",
+)
+
+# Improve chart layout.
+fig.update_layout(
+    hovermode="x unified",
+    legend_title_text="Bidding zone",
+    xaxis_title="Date and time",
+    yaxis_title="Electricity price (EUR/MWh)",
+)
+
+fig.update_traces(
+    line=dict(width=2),
+)
+
+# Display the chart.
+fig.show()
+```
+
+## Executive Summary
+```{python}
+# Display bidding-zone comparison
+display(Markdown(generate_executive_summary(market_stats)))
+display(market_stats) 
+```
+
+
+
+## Patterns
+```{python}
+# Daily
+daily_prices = calculate_daily_prices(prices_long)
+
+fig = px.line(
+    daily_prices,
+    x="date",
+    y="mean_price",
+    color="bidding_zone",
+    title="Daily Average Day-Ahead Electricity Prices",
+    labels={
+        "date": "Date",
+        "mean_price": "Average Price (€/MWh)",
+        "bidding_zone": "Bidding Zone",
+    },
+)
+
+fig.show()
+
+# Hourly
+hourly_patterns = calculate_hourly_patterns(prices_long)
+
+# Ensure all 24 hours are represented
+all_hours = pd.DataFrame({"hour": range(24)})
+
+zones = hourly_patterns["bidding_zone"].unique()
+
+hourly_patterns = (
+    pd.MultiIndex.from_product(
+        [zones, range(24)],
+        names=["bidding_zone", "hour"]
+    )
+    .to_frame(index=False)
+    .merge(hourly_patterns, on=["bidding_zone", "hour"], how="left")
+)
+
+fig = px.line(
+    hourly_patterns,
+    x="hour",
+    y="mean_price",
+    color="bidding_zone",
+    markers=True,
+    title="Average Day-Ahead Price by Hour",
+    labels={
+        "hour": "Hour of Day",
+        "mean_price": "Average Price (€/MWh)",
+        "bidding_zone": "Bidding Zone",
+    },
+)
+
+fig.update_xaxes(
+    tickmode="linear",
+    tick0=0,
+    dtick=1,
+    range=[0, 23]
+)
+
+fig.show()
+
+
+# Price extremes
+extremes = identify_price_extremes(prices_long)
+
+display(extremes)
+```
+
+
+
+
+
+
+
+
+
+
