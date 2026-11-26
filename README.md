@@ -4,6 +4,8 @@
 
 An interactive deep dive into Europe's energy landscape, freshly brewed.
 
+☕ **Fresh updates in the making.** This is an ongoing project. This project is continuously evolving, with new content, features and improvements added along the way.
+
 **[View the full report →](https://dianadorobantu.github.io/electricity-market-brief/)**
 
 ## Report Preview
