@@ -1,7 +1,11 @@
-> ⚠️ **This project is under active development, briefly paused for a visit to lovely Warsaw.**
+# Electricity Market Brief
 
-<p align="center">
-  <img src="assets/under_construction.gif" width="450" alt="Under Construction">
-</p>
+[![Website](https://img.shields.io/badge/Website-Live-brightgreen?style=for-the-badge)](https://dianadorobantu.github.io/electricity-market-brief/)
 
-Things may break. Features may disappear. Coffee is being consumed at alarming rates. ☕
+An interactive deep dive into Europe's energy landscape, freshly brewed.
+
+**[View the full report →](https://dianadorobantu.github.io/electricity-market-brief/)**
+
+## Report Preview
+
+[![Electricity Market Brief](assets/report-preview.png)](https://dianadorobantu.github.io/electricity-market-brief/)
